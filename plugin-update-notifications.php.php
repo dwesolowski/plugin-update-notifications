@@ -77,6 +77,7 @@ class pluginUpdateNotifications {
         }
         echo '</tbody>';
         echo '</table>';
+        echo '<p class="description">* If you remove a plugin, be sure to resave your settings.</p>';
         submit_button();
         echo '</form>';
         echo '</div>';
