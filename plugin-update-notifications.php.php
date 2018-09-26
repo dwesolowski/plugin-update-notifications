@@ -53,6 +53,22 @@ class pluginUpdateNotifications {
         );
     }
 
+    public function check_for_override($key) {
+        if ( $key ) {
+
+            $stringsToFind = array(
+                'wordpress-seo-premium/wp-seo-premium.php'
+            );
+
+            $stringsToReplace = array(
+                'wordpress-seo/wp-seo.php'
+            );
+
+            $key = str_replace($stringsToFind, $stringsToReplace, $key);
+        }
+        return $key;
+    }
+
     public function plugin_update_notifications_options_page() {
 
         if ( ! current_user_can( 'manage_options' ) ) return;
@@ -68,6 +84,9 @@ class pluginUpdateNotifications {
         echo '<table class="form-table">';
         echo '<tbody>';
         foreach ( $current_plugins as $key => $val ) {
+
+            $key = $this->check_for_override($key);
+
             echo '<tr>';
             echo '<th scope="row" colspan="2" class="th-full">';
             echo '<label for="'.$key.'">';
